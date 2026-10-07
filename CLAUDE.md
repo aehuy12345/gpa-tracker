@@ -27,7 +27,17 @@ Pre-implementation: the repo contains only `PRD.md` (Vietnamese) and the slash c
 - No backend, no auth, no database. Data lives in `localStorage` under key `gpa-tracker:v1`.
 - UI text and validation errors are in Vietnamese; the layout must be responsive down to 360px.
 
-Once scaffolded, add the real build/dev/test commands (including how to run a single Vitest test) to this file.
+## Commands
+
+- `npm run dev` – dev server; `npm run build` – build to `dist/`
+- `npm test` – all Vitest tests; single file: `npx vitest run tests/validation.test.js`; single test: `npx vitest run -t "tên test"`
+
+## Project structure
+
+- `index.html`, `src/style.css` – giao diện
+- `src/main.js` – DOM code (form, bảng)
+- `src/validation.js`, `src/courses.js` – hàm thuần (validation, thêm môn), không đụng DOM
+- `tests/` – unit test Vitest
 
 ## Domain rules to keep consistent (see PRD sections 2.F1–F5)
 
