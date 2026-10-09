@@ -45,7 +45,11 @@
       </section>
 
       <section>
-        <h2>Danh sách môn học</h2>
+        <div class="section-head">
+          <h2>Danh sách môn học</h2>
+          <button type="button" id="clear-btn" class="secondary row-btn" disabled>Xoá tất cả</button>
+        </div>
+        <p id="storage-warning" class="warning" role="alert" hidden>Không lưu được dữ liệu. Bạn vẫn dùng bình thường trong phiên này nhưng dữ liệu sẽ mất khi tải lại trang.</p>
         <p id="empty-hint" class="hint">Hãy thêm môn học đầu tiên</p>
         <div class="table-wrap">
           <table id="course-table" hidden>

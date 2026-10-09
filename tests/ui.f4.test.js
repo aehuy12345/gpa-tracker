@@ -23,6 +23,7 @@ function add(name, credits, score) {
 
 beforeEach(async () => {
   document.body.innerHTML = bodyHtml;
+  localStorage.clear();
   vi.resetModules();
   vi.restoreAllMocks();
   await import("../src/main.js");

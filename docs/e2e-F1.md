@@ -23,4 +23,4 @@ Cột "Kết quả" để trống, người test tự điền Đạt / Không đ
 | 16 | Nhập sai (hiện lỗi) rồi sửa đúng và bấm lại | Lỗi cũ biến mất, môn được thêm | |
 | 17 | Tên nhập `<b>x</b>` | Bảng hiện đúng chữ `<b>x</b>`, không bị in đậm | |
 | 18 | Thu cửa sổ trình duyệt còn 360px chiều rộng | Không bị vỡ giao diện, không thanh cuộn ngang toàn trang; bảng đọc được (tên dài tự cuộn trong bảng) | |
-| 19 | Tải lại trang sau khi thêm môn | Danh sách mất (đúng dự kiến, việc lưu dữ liệu thuộc F5) | |
+| 19 | Tải lại trang sau khi thêm môn | Danh sách vẫn còn (xem thêm e2e-F5.md) | |

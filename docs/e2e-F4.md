@@ -20,4 +20,3 @@ Cột "Kết quả" để trống, người test tự điền Đạt / Không đ
 | 12 | Xoá hết các môn còn lại | Hiện "Hãy thêm môn học đầu tiên"; GPA và Xếp loại là "—" | |
 | 13 | Thu cửa sổ còn 360px, thêm vài môn | Cột "Thao tác" vẫn bấm được (bảng cuộn ngang nếu cần), trang không vỡ | |
 
-Ghi chú: dữ liệu chưa được lưu khi tải lại trang (chức năng F5).

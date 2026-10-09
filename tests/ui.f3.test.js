@@ -17,6 +17,7 @@ function add(name, credits, score) {
 
 beforeEach(async () => {
   document.body.innerHTML = bodyHtml;
+  localStorage.clear();
   vi.resetModules();
   await import("../src/main.js");
 });

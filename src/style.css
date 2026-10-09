@@ -54,3 +54,6 @@ th:nth-child(n + 2), td:nth-child(n + 2) { text-align: center; white-space: nowr
 .stats dd { margin: 0; font-size: 1.25rem; font-weight: 700; }
 @media (max-width: 420px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 [hidden] { display: none !important; }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.warning { padding: 8px 12px; color: #7a4b00; background: #fff6d6; border-radius: 6px; }

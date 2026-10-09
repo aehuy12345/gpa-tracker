@@ -23,6 +23,7 @@ const rows = () => [...document.querySelectorAll("#course-body tr")].map((tr) =>
 
 beforeEach(async () => {
   document.body.innerHTML = bodyHtml;
+  localStorage.clear();
   vi.resetModules();
   await import("../src/main.js");
 });

@@ -16,4 +16,3 @@ Cột "Kết quả" để trống, người test tự điền Đạt / Không đ
 | 8 | Thêm tiếp 1 môn 3 tín chỉ điểm 5 | GPA hệ 4 = 2.25; hệ 10 = 6.00; Trung bình | |
 | 9 | Thu cửa sổ còn 360px | Khối Kết quả xếp 2 cột, đọc được, không vỡ trang | |
 
-Ghi chú: dữ liệu chưa được lưu khi tải lại trang (chức năng F5).

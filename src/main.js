@@ -1,6 +1,7 @@
 import { addCourse, updateCourse, removeCourse } from "./courses.js";
 import { convertScore } from "./grade.js";
 import { calculateStats } from "./gpa.js";
+import { loadCourses, saveCourses } from "./storage.js";
 
 const FIELDS = ["name", "credits", "score"];
 
@@ -10,8 +11,18 @@ const table = document.getElementById("course-table");
 const emptyHint = document.getElementById("empty-hint");
 const submitBtn = document.getElementById("submit-btn");
 const cancelBtn = document.getElementById("cancel-btn");
+const clearBtn = document.getElementById("clear-btn");
+const storageWarning = document.getElementById("storage-warning");
 
-let courses = [];
+function getStorage() {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+let courses = getStorage() ? loadCourses(getStorage()) : [];
 let editingId = null;
 
 function resetForm() {
@@ -38,6 +49,7 @@ function deleteCourse(course) {
   if (!window.confirm(`Xoá môn "${course.name}"?`)) return;
   courses = removeCourse(courses, course.id);
   if (editingId === course.id) resetForm();
+  persist();
   renderTable();
 }
 
@@ -67,6 +79,12 @@ function showErrors(errors) {
   document.getElementById(firstInvalid).focus();
 }
 
+// Ghi danh sách vào localStorage; lỗi thì chỉ hiện cảnh báo, app vẫn chạy.
+function persist() {
+  const storage = getStorage();
+  storageWarning.hidden = storage !== null && saveCourses(storage, courses);
+}
+
 function renderTable() {
   body.replaceChildren(
     ...courses.map((course) => {
@@ -87,6 +105,7 @@ function renderTable() {
       return row;
     }),
   );
+  clearBtn.disabled = courses.length === 0;
   table.hidden = courses.length === 0;
   emptyHint.hidden = courses.length > 0;
   renderSummary();
@@ -118,8 +137,18 @@ form.addEventListener("submit", (event) => {
   }
   courses = result.courses;
   resetForm();
+  persist();
   renderTable();
   form.elements.name.focus();
+});
+
+clearBtn.addEventListener("click", () => {
+  if (courses.length === 0) return;
+  if (!window.confirm("Xoá tất cả môn học?")) return;
+  courses = [];
+  resetForm();
+  persist();
+  renderTable();
 });
 
 cancelBtn.addEventListener("click", () => {
