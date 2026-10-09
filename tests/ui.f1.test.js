@@ -18,7 +18,7 @@ function submit() {
 }
 
 const rows = () => [...document.querySelectorAll("#course-body tr")].map((tr) =>
-  [...tr.children].map((td) => td.textContent),
+  [...tr.children].slice(0, 5).map((td) => td.textContent), // bỏ cột "Thao tác" (F4)
 );
 
 beforeEach(async () => {

@@ -38,6 +38,11 @@ button {
   border-radius: 6px;
   cursor: pointer;
 }
+.form-actions { display: flex; gap: 8px; }
+button.secondary { color: #1f2430; background: #e3e6ee; }
+button.row-btn { width: auto; padding: 6px 10px; font-size: 0.875rem; margin-right: 4px; }
+button.row-btn.danger { background: #d93025; }
+tr.editing { background: #fff6d6; }
 .hint { color: #5f6675; }
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }

@@ -1,4 +1,4 @@
-import { addCourse } from "./courses.js";
+import { addCourse, updateCourse, removeCourse } from "./courses.js";
 import { convertScore } from "./grade.js";
 import { calculateStats } from "./gpa.js";
 
@@ -8,8 +8,47 @@ const form = document.getElementById("course-form");
 const body = document.getElementById("course-body");
 const table = document.getElementById("course-table");
 const emptyHint = document.getElementById("empty-hint");
+const submitBtn = document.getElementById("submit-btn");
+const cancelBtn = document.getElementById("cancel-btn");
 
 let courses = [];
+let editingId = null;
+
+function resetForm() {
+  editingId = null;
+  form.reset();
+  clearErrors();
+  submitBtn.textContent = "Thêm môn";
+  cancelBtn.hidden = true;
+}
+
+function startEdit(course) {
+  editingId = course.id;
+  clearErrors();
+  form.elements.name.value = course.name;
+  form.elements.credits.value = course.credits;
+  form.elements.score.value = course.score.toFixed(1);
+  submitBtn.textContent = "Lưu";
+  cancelBtn.hidden = false;
+  form.elements.name.focus();
+  renderTable();
+}
+
+function deleteCourse(course) {
+  if (!window.confirm(`Xoá môn "${course.name}"?`)) return;
+  courses = removeCourse(courses, course.id);
+  if (editingId === course.id) resetForm();
+  renderTable();
+}
+
+function actionButton(label, className, onClick) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `row-btn ${className}`;
+  button.textContent = label;
+  button.addEventListener("click", onClick);
+  return button;
+}
 
 function clearErrors() {
   for (const field of FIELDS) {
@@ -38,6 +77,13 @@ function renderTable() {
         cell.textContent = text;
         row.append(cell);
       }
+      if (course.id === editingId) row.classList.add("editing");
+      const actions = document.createElement("td");
+      actions.append(
+        actionButton("Sửa", "edit", () => startEdit(course)),
+        actionButton("Xoá", "danger", () => deleteCourse(course)),
+      );
+      row.append(actions);
       return row;
     }),
   );
@@ -60,19 +106,25 @@ function renderSummary() {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   clearErrors();
-  const result = addCourse(courses, {
+  const input = {
     name: form.elements.name.value,
     credits: form.elements.credits.value,
     score: form.elements.score.value,
-  });
+  };
+  const result = editingId ? updateCourse(courses, editingId, input) : addCourse(courses, input);
   if (result.errors) {
     showErrors(result.errors);
     return;
   }
   courses = result.courses;
+  resetForm();
   renderTable();
-  form.reset();
   form.elements.name.focus();
+});
+
+cancelBtn.addEventListener("click", () => {
+  resetForm();
+  renderTable();
 });
 
 renderTable();
