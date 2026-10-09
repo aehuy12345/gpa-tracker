@@ -1,4 +1,5 @@
 import { addCourse } from "./courses.js";
+import { convertScore } from "./grade.js";
 
 const FIELDS = ["name", "credits", "score"];
 
@@ -30,7 +31,8 @@ function renderTable() {
   body.replaceChildren(
     ...courses.map((course) => {
       const row = document.createElement("tr");
-      for (const text of [course.name, course.credits, course.score.toFixed(1)]) {
+      const { letter, point } = convertScore(course.score);
+      for (const text of [course.name, course.credits, course.score.toFixed(1), letter, point.toFixed(1)]) {
         const cell = document.createElement("td");
         cell.textContent = text;
         row.append(cell);

@@ -36,7 +36,7 @@ describe("F1 – giao diện thêm môn", () => {
   it("thêm môn hợp lệ: vào bảng, xoá form, focus ô Tên môn", () => {
     fill("  Giải tích ", "3", "8,56");
     submit();
-    expect(rows()).toEqual([["Giải tích", "3", "8.6"]]);
+    expect(rows()).toEqual([["Giải tích", "3", "8.6", "A", "4.0"]]);
     expect($("name").value).toBe("");
     expect($("credits").value).toBe("");
     expect($("score").value).toBe("");
@@ -51,8 +51,8 @@ describe("F1 – giao diện thêm môn", () => {
     fill("Lý", "2", "7.5");
     submit();
     expect(rows()).toEqual([
-      ["Toán", "3", "9.0"],
-      ["Lý", "2", "7.5"],
+      ["Toán", "3", "9.0", "A", "4.0"],
+      ["Lý", "2", "7.5", "B", "3.0"],
     ]);
   });
 
