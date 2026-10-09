@@ -43,4 +43,9 @@ button {
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 8px; text-align: left; border-bottom: 1px solid #e3e6ee; }
 th:nth-child(n + 2), td:nth-child(n + 2) { text-align: center; white-space: nowrap; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0; }
+.stats div { background: #f5f6fa; border-radius: 6px; padding: 8px; text-align: center; }
+.stats dt { font-size: 0.8rem; color: #5f6675; }
+.stats dd { margin: 0; font-size: 1.25rem; font-weight: 700; }
+@media (max-width: 420px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 [hidden] { display: none !important; }

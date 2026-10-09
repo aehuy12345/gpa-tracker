@@ -1,5 +1,6 @@
 import { addCourse } from "./courses.js";
 import { convertScore } from "./grade.js";
+import { calculateStats } from "./gpa.js";
 
 const FIELDS = ["name", "credits", "score"];
 
@@ -42,6 +43,18 @@ function renderTable() {
   );
   table.hidden = courses.length === 0;
   emptyHint.hidden = courses.length > 0;
+  renderSummary();
+}
+
+function renderSummary() {
+  const stats = calculateStats(courses);
+  const dash = (value, format) => (value === null ? "—" : format(value));
+  document.getElementById("gpa4").textContent = dash(stats.gpa4, (v) => v.toFixed(2));
+  document.getElementById("gpa10").textContent = dash(stats.gpa10, (v) => v.toFixed(2));
+  document.getElementById("classification").textContent = dash(stats.classification, (v) => v);
+  document.getElementById("stat-count").textContent = stats.count;
+  document.getElementById("stat-credits").textContent = stats.totalCredits;
+  document.getElementById("stat-earned").textContent = stats.earnedCredits;
 }
 
 form.addEventListener("submit", (event) => {
